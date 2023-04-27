@@ -1,0 +1,77 @@
+import React from 'react';
+import {View, FlatList, Text, StyleSheet, Image} from 'react-native';
+
+const DATA = [
+  {
+    id: 1,
+    "name": "André",
+    "email": "andre@site.com",
+    "position": "Manager",
+    "photo": "https://randomuser.me/api/portraits/men/86.jpg" 
+  },
+  {
+    id: 2,
+    "name": "Jill Ruiz",
+    "email": "jill@site.com",
+    "position": "Operadora de Produção",
+    "photo": "https://randomuser.me/api/portraits/women/60.jpg" 
+  },
+  {
+    id: 3,
+    "name": "Hunter Sutton",
+    "email": "sutton@site.com",
+    "position": "Fiscal de Produção",
+    "photo": "https://randomuser.me/api/portraits/men/78.jpg" 
+  },
+];
+
+function DesenhaItem({item}){
+  return(
+    <View style={styles.listItem}>
+      <Image source={{ uri: item.photo }} style={styles.image}/>
+      
+      <View style={{alignItems: "center", flex: 1}}>
+      <Text style={styles.item}>{item.name}</Text>
+      <Text>{item.position}</Text>
+      </View>
+      </View>
+  );
+}
+
+function App(){
+  const renderItem = ({item}) => <DesenhaItem title={item.title} />
+  return (
+    <View style={styles.container}>
+    <FlatList
+      data={DATA}
+      renderItem={({item}) => <DesenhaItem item={item} />}
+    />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20
+  },
+  item: {
+    padding: 10,
+    fontSize: 18,
+    fontWeight: 'bold'
+  },
+  image: {
+    width: 60,
+    height: 60,
+    borderRadius: 50
+  },
+  listItem:{
+    flexDirection: "row",
+    margin: 10,
+    padding: 10,
+    backgroundColor: "green",
+    borderRadius: 15
+  }
+});
+
+export default App;
